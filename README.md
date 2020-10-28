@@ -24,4 +24,8 @@ yarn test
 ```
 
 ## External sources
-https://github.com/antlr/grammars-v4/tree/master/javascript/ecmascript
+1. [EcmaScript Antlr4 grammar](https://github.com/antlr/grammars-v4/tree/master/javascript/ecmascript)
+
+## Materials
+1. [ES Antlr4 Nodes Description](https://github.com/estree/estree/blob/master/es5.md)
+2. [Writing compiler with Javascript and Antlr4](https://habr.com/ru/post/351906/)
