@@ -23,6 +23,13 @@ Run tests:
 yarn test
 ```
 
+## Not implemented
+```with, switch, try/catch/finally, throw, debugger, interface, implements, package, yield```
+
+Keywords ```interface``` and ```implement``` have no real use case in Javascript world, yet.
+
+Statement ```with``` is deprecated in ES6 and cannot be used with strict mode;
+ 
 ## External sources
 1. [EcmaScript Antlr4 grammar](https://github.com/antlr/grammars-v4/tree/master/javascript/ecmascript)
 
