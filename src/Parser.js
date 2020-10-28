@@ -3,6 +3,7 @@ const ECMAScriptLexer = require('../lib/ECMAScriptLexer.js');
 const ECMAScriptParser = require('../lib/ECMAScriptParser.js');
 const {FileNotExistsError} = require("./Errors");
 const fs = require('fs');
+const AstVisitor = require('./AstBuilder/AstVisitor').AstVisitor;
 
 class Parser {
     constructor(filePath) {
@@ -21,6 +22,7 @@ class Parser {
         const tokens = new antlr4.CommonTokenStream(lexer);
         const parser = new ECMAScriptParser.ECMAScriptParser(tokens);
         const tree = parser.program();
+        const astTree = new AstVisitor().visit(tree);
 
         return tree.toStringTree(parser.ruleNames);
     }
