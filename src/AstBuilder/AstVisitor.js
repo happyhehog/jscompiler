@@ -1,4 +1,5 @@
 const ECMAScriptVisitor = require('../../lib/ECMAScriptVisitor').ECMAScriptVisitor;
+const ECMAScriptParser = require('../../lib/ECMAScriptParser').ECMAScriptParser;
 const {
     // Base nodes
     ProgramNode,
@@ -9,6 +10,7 @@ const {
     BlockStatementNode,
     EmptyStatementNode,
     SequenceExpressionNode,
+    UndefinedLiteralNode,
 
     // Functions
     FunctionBodyNode,
@@ -165,15 +167,21 @@ class AstVisitor extends ECMAScriptVisitor {
 
     visitArrayLiteral(ctx) {
         const node = new ArrayExpressionNode(ctx);
-        console.log(ctx.elementList());
         if (ctx.elementList()) {
             ctx.elementList().children.forEach((item) => {
-                const elementNode = this.visit(item);
-                if (typeof elementNode === 'undefined') {
+                if ('ElisionContext' === item.constructor.name) {
+                    item.children.forEach((i) => {
+                        if ('TerminalNodeImpl' === i.constructor.name) {
+                            node.elements.push(new UndefinedLiteralNode(i.parentCtx));
+                        }
+                    });
                     return;
                 }
 
-                node.elements.push(elementNode);
+                const element = this.visit(item);
+                if (typeof element !== 'undefined') {
+                    node.elements.push(element);
+                }
             });
         }
 
@@ -272,7 +280,7 @@ class AstVisitor extends ECMAScriptVisitor {
 
         if (ctx.formalParameterList()) {
             ctx.formalParameterList().Identifier().forEach((parameter) => {
-                node.parameters.push(new IdentifierNode(ctx, parameter.symbol.text));
+                node.parameters.push(new IdentifierNode(parameter, parameter.symbol.text));
             });
         }
 
@@ -297,7 +305,7 @@ class AstVisitor extends ECMAScriptVisitor {
 
         if (ctx.formalParameterList()) {
             ctx.formalParameterList().Identifier().forEach((param) => {
-                node.params.push(new IdentifierNode(ctx, param.symbol.text));
+                node.params.push(new IdentifierNode(param, param.symbol.text));
             });
         }
 
@@ -330,8 +338,8 @@ class AstVisitor extends ECMAScriptVisitor {
 
     visitAssignmentExpression(ctx) {
         return new AssignmentExpressionNode(ctx, '=',
-            this.visit(ctx.singleExpression(0)),
-            this.visit(ctx.singleExpression(1))
+            this.visit(ctx.children[0]),
+            this.visit(ctx.children[2])
         );
     }
 

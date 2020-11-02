@@ -1,5 +1,6 @@
 class BaseAstNode {
     constructor(ctx) {
+        this.ctx = ctx;
         this.location = {
             startLine: ctx.start.line,
             startColumn: ctx.start.column,
@@ -18,11 +19,14 @@ class BaseAstNode {
 // Base nodes
 // ==========================
 
-class ExpressionNode extends BaseAstNode {}
+class ExpressionNode extends BaseAstNode {
+}
 
-class StatementNode extends BaseAstNode {}
+class StatementNode extends BaseAstNode {
+}
 
-class DeclarationNode extends BaseAstNode {}
+class DeclarationNode extends BaseAstNode {
+}
 
 class ProgramNode extends BaseAstNode {
     constructor(ctx) {
@@ -99,6 +103,13 @@ class SequenceExpressionNode extends ExpressionNode {
             resultStr += item.print(deepLevel);
         });
         return resultStr;
+    }
+}
+
+class UndefinedLiteralNode extends LiteralNode {
+    constructor(ctx) {
+        super(ctx);
+        this.value = 'undefined';
     }
 }
 
@@ -208,9 +219,11 @@ class CallExpressionNode extends ExpressionNode {
 // Control flow loops
 // ==========================
 
-class BreakStatementNode extends StatementNode {}
+class BreakStatementNode extends StatementNode {
+}
 
-class ContinueStatementNode extends StatementNode {}
+class ContinueStatementNode extends StatementNode {
+}
 
 class IfStatementNode extends StatementNode {
     constructor(ctx, testExpr, consequent) {
@@ -254,9 +267,11 @@ class LoopStatementNode extends StatementNode {
     }
 }
 
-class WhileStatementNode extends LoopStatementNode {}
+class WhileStatementNode extends LoopStatementNode {
+}
 
-class ForStatementNode extends LoopStatementNode {}
+class ForStatementNode extends LoopStatementNode {
+}
 
 class ReturnStatementNode extends StatementNode {
     constructor(ctx, value) {
@@ -358,9 +373,11 @@ class ExpressionStatementNode extends StatementNode {
     }
 }
 
-class AssignmentExpressionNode extends BinaryExpressionNode {}
+class AssignmentExpressionNode extends BinaryExpressionNode {
+}
 
-class LogicalExpressionNode extends BinaryExpressionNode {}
+class LogicalExpressionNode extends BinaryExpressionNode {
+}
 
 class ArrayExpressionNode extends ExpressionNode {
     constructor(ctx) {
@@ -459,9 +476,11 @@ class IncOrDecExpression extends ExpressionNode {
     }
 }
 
-class IncrementExpression extends IncOrDecExpression {}
+class IncrementExpression extends IncOrDecExpression {
+}
 
-class DecrementExpression extends IncOrDecExpression {}
+class DecrementExpression extends IncOrDecExpression {
+}
 
 
 module.exports = {
@@ -474,6 +493,7 @@ module.exports = {
     BlockStatementNode,
     EmptyStatementNode,
     SequenceExpressionNode,
+    UndefinedLiteralNode,
 
     // Functions
     FunctionBodyNode,
