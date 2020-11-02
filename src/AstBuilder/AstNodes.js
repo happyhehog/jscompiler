@@ -205,7 +205,7 @@ class CallExpressionNode extends ExpressionNode {
 
 
 // ==========================
-// Control flow statements
+// Control flow loops
 // ==========================
 
 class BreakStatementNode extends StatementNode {}
@@ -231,20 +231,32 @@ class IfStatementNode extends StatementNode {
     }
 }
 
-class WhileStatementNode extends StatementNode {
-    constructor(ctx, testExpr, body) {
+class LoopStatementNode extends StatementNode {
+    constructor(ctx, expr, body) {
         super(ctx);
-        this.testExpr = testExpr;
+        this.expr = expr;
         this.body = body;
     }
 
     print(deepLevel = 0, suffix = '') {
         let resultStr = super.print(deepLevel);
-        resultStr += ' '.repeat(deepLevel * 4) + '--> test expression:\n' + this.testExpr.print(deepLevel + 1);
-        resultStr += ' '.repeat(deepLevel * 4) + '--> while body:\n' + this.body.print(deepLevel + 1);
+        if (Array.isArray(this.expr)) {
+            resultStr += ' '.repeat(deepLevel * 4) + '--> test expressions:\n';
+            this.expr.forEach((item) => {
+                resultStr += item.print(deepLevel + 1);
+            });
+        } else {
+            resultStr += ' '.repeat(deepLevel * 4) + '--> test expression:\n' + this.expr.print(deepLevel + 1);
+        }
+
+        resultStr += ' '.repeat(deepLevel * 4) + '--> loop body:\n' + this.body.print(deepLevel + 1);
         return resultStr;
     }
 }
+
+class WhileStatementNode extends LoopStatementNode {}
+
+class ForStatementNode extends LoopStatementNode {}
 
 class ReturnStatementNode extends StatementNode {
     constructor(ctx, value) {
@@ -258,7 +270,6 @@ class ReturnStatementNode extends StatementNode {
         return resultStr;
     }
 }
-
 
 // ==========================
 // Variables
@@ -470,11 +481,12 @@ module.exports = {
     FunctionExpressionNode,
     CallExpressionNode,
 
-    // Control flow statements
+    // Control flow loops
     BreakStatementNode,
     ContinueStatementNode,
     IfStatementNode,
     WhileStatementNode,
+    ForStatementNode,
     ReturnStatementNode,
 
     // Variables

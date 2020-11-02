@@ -16,11 +16,12 @@ const {
     FunctionExpressionNode,
     CallExpressionNode,
 
-    // Control flow statements
+    // Control flow loops
     BreakStatementNode,
     ContinueStatementNode,
     IfStatementNode,
     WhileStatementNode,
+    ForStatementNode,
     ReturnStatementNode,
 
     // Variables
@@ -185,7 +186,7 @@ class AstVisitor extends ECMAScriptVisitor {
 
 
     // ==========================
-    // Control flow statements
+    // Control flow loops
     // ==========================
 
     visitBreakStatement(ctx) {
@@ -211,6 +212,13 @@ class AstVisitor extends ECMAScriptVisitor {
 
     visitWhileStatement(ctx) {
         return new WhileStatementNode(ctx,
+            this.visit(ctx.expressionSequence()),
+            this.visit(ctx.statement())
+        );
+    }
+
+    visitForStatement(ctx) {
+        return new ForStatementNode(ctx,
             this.visit(ctx.expressionSequence()),
             this.visit(ctx.statement())
         );
@@ -313,7 +321,8 @@ class AstVisitor extends ECMAScriptVisitor {
     // ==========================
 
     visitRelationalExpression(ctx) {
-        return new BinaryExpressionNode(ctx, ctx.children[1].getText() ?? '',
+        const operator = typeof ctx.children !== 'undefined' ? ctx.children[1].getText() : '';
+        return new BinaryExpressionNode(ctx, operator,
             this.visit(ctx.singleExpression(0)),
             this.visit(ctx.singleExpression(1))
         );
@@ -327,27 +336,31 @@ class AstVisitor extends ECMAScriptVisitor {
     }
 
     visitEqualityExpression(ctx) {
-        return new BinaryExpressionNode(ctx, ctx.children[1].getText() ?? '',
+        const operator = typeof ctx.children !== 'undefined' ? ctx.children[1].getText() : '';
+        return new BinaryExpressionNode(ctx, operator,
             this.visit(ctx.singleExpression(0)),
             this.visit(ctx.singleExpression(1)));
     }
 
     visitMultiplicativeExpression(ctx) {
-        return new BinaryExpressionNode(ctx, ctx.children[1].getText() ?? '',
+        const operator = typeof ctx.children !== 'undefined' ? ctx.children[1].getText() : '';
+        return new BinaryExpressionNode(ctx, operator,
             this.visit(ctx.singleExpression(0)),
             this.visit(ctx.singleExpression(1))
         );
     }
 
     visitAdditiveExpression(ctx) {
-        return new BinaryExpressionNode(ctx, ctx.children[1].getText() ?? '',
+        const operator = typeof ctx.children !== 'undefined' ? ctx.children[1].getText() : '';
+        return new BinaryExpressionNode(ctx, operator,
             this.visit(ctx.singleExpression(0)),
             this.visit(ctx.singleExpression(1))
         );
     }
 
     visitBitShiftExpression(ctx) {
-        return new BinaryExpressionNode(ctx, ctx.children[1].getText() ?? '',
+        const operator = typeof ctx.children !== 'undefined' ? ctx.children[1].getText() : '';
+        return new BinaryExpressionNode(ctx, operator,
             this.visit(ctx.singleExpression(0)),
             this.visit(ctx.singleExpression(1))
         );
