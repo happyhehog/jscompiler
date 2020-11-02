@@ -1,0 +1,2 @@
+ProgramNode (1:0, 1:0)
+    LiteralNode (1:0, 1:0) : { value: 42 }

@@ -1,0 +1,17 @@
+ProgramNode (1:0, 4:0)
+    AssignmentExpressionNode (1:0, 4:0) { operator: = }
+    --> left operand:
+        IdentifierNode (1:0, 1:0) : { name: x }
+    --> right operand:
+        ObjectExpressionNode (1:4, 4:0)
+        --> properties:
+            PropertyNode (2:4, 2:11)
+            --> key:
+                IdentifierNode (2:4, 2:4) : { name: hello }
+            --> value:
+                LiteralNode (2:11, 2:11) : { value: 1 }
+            PropertyNode (3:4, 3:11)
+            --> key:
+                IdentifierNode (3:4, 3:4) : { name: world }
+            --> value:
+                LiteralNode (3:11, 3:11) : { value: 2 }

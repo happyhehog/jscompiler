@@ -1,5 +1,4 @@
 const ECMAScriptVisitor = require('../../lib/ECMAScriptVisitor').ECMAScriptVisitor;
-const ECMAScriptParser = require('../../lib/ECMAScriptParser').ECMAScriptParser;
 const {
     // Base nodes
     ProgramNode,
@@ -94,7 +93,7 @@ class AstVisitor extends ECMAScriptVisitor {
 
     visitIdentifierName(ctx) {
         if (ctx.reservedWord()) {
-            return ctx.visit(ctx.reservedWord());
+            return this.visit(ctx.reservedWord());
         }
 
         return new IdentifierNode(ctx, ctx.Identifier().symbol.text);
