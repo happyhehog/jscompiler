@@ -2,6 +2,8 @@
 
 Javascript compiler in javascript for FEFU course.
 
+Language standard: ```EcmaScript 5```
+
 ## Install
 
 Install ```NodeJS``` and ```npm```, then run in project directory
