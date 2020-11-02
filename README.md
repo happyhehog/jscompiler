@@ -22,11 +22,13 @@ yarn start filePath1 filePath2 ...
 
 Run tests:
 ```
-yarn test
+yarn test:ast
+yarn test:parser
+yarn test:all
 ```
 
 ## Not implemented
-```with, switch, try/catch/finally, throw, debugger, interface, implements, package, yield```
+```with, switch, try/catch/finally, throw, debugger, interface, implements, package, yield, for/in```
 
 Keywords ```interface``` and ```implement``` have no real use case in Javascript world, yet.
 

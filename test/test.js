@@ -1,8 +1,7 @@
 const fs = require('fs');
-const assert = require('assert');
 const {Parser} = require("../src/Parser");
 
-const testFolder = './test/ast';
+const testFolder = process.argv[3];
 const testsList = {};
 
 function getTestsFromFolder(dir) {
@@ -19,7 +18,7 @@ function getTestsFromFolder(dir) {
 
             const f = file.split('\/');
             let fileCategory = '';
-            for (let i = 2; i < f.length - 1; i++) {
+            for (let i = 1; i < f.length - 1; i++) {
                 fileCategory += f[i] + '/';
             }
 
@@ -42,24 +41,8 @@ for (const key in testsList) {
             it(filename, function (done) {
                 const result = new Parser(files[file]).parse().print().trim();
                 const expected = fs.readFileSync(files[file].replace('.in', '.out')).toString().replaceAll('\r\n', '\n').trim();
-                if (result === expected) {
-                    done();
-                } else {
-                    done('Result != expected');
-                }
-
+                done(result === expected ? null : new Error('Result != expected'));
             });
         }
     });
 }
-
-// describe('Array', function() {
-//     for (let i in a) {
-//         console.log(i);
-//         describe(i, function() {
-//             it('should return -1 when the value is not present', function() {
-//                 assert.equal([1, 2, 3].indexOf(4), -1);
-//             });
-//         });
-//     }
-// });
