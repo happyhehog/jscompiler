@@ -1,15 +1,18 @@
 const NoSourceFileError = require('./Errors').NoSourceFileError;
 const Parser = require('./parser').Parser;
 
-const DELIMITER = '================================';
+const DELIMITER = '====================================================';
 
 function parseFile(filePath) {
     console.log(`\n${DELIMITER}`);
     console.log('Found source file: ' + filePath);
     console.log(DELIMITER);
 
-    const parser = new Parser(filePath);
-    console.log(parser.parse());
+    const astTree = new Parser(filePath).parse();
+    console.log('-------------------------');
+    console.log('/// Generated AstTree ///');
+    console.log('-------------------------');
+    console.log(astTree.print());
 }
 
 if (process.argv.length === 2) {

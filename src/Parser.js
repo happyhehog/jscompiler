@@ -22,9 +22,7 @@ class Parser {
         const tokens = new antlr4.CommonTokenStream(lexer);
         const parser = new ECMAScriptParser.ECMAScriptParser(tokens);
         const tree = parser.program();
-        const astTree = new AstVisitor().visit(tree);
-
-        return tree.toStringTree(parser.ruleNames);
+        return new AstVisitor().visit(tree);
     }
 }
 
