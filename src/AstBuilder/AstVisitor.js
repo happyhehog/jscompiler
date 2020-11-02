@@ -39,6 +39,10 @@ const {
     ObjectExpressionNode,
     PropertyNode,
     MemberExpressionNode,
+
+    // Increment and decrement
+    IncrementExpression,
+    DecrementExpression,
 } = require('./AstNodes');
 
 
@@ -416,8 +420,8 @@ class AstVisitor extends ECMAScriptVisitor {
 
     visitObjectLiteral(ctx) {
         const node = new ObjectExpressionNode(ctx);
-        if (node.propertyNameAndValueList()) {
-            node.propertyNameAndValueList().propertyAssignment().forEach((prop) => {
+        if (ctx.propertyNameAndValueList()) {
+            ctx.propertyNameAndValueList().propertyAssignment().forEach((prop) => {
                 node.props.push(this.visit(prop));
             });
         }
@@ -457,6 +461,27 @@ class AstVisitor extends ECMAScriptVisitor {
             this.visit(ctx.expressionSequence()),
             true
         );
+    }
+
+
+    // ==========================
+    // Increment and decrement
+    // ==========================
+
+    visitPreIncrementExpression(ctx) {
+        return new IncrementExpression(ctx, 'pre', this.visit(ctx.getChild(1)));
+    };
+
+    visitPostIncrementExpression(ctx) {
+        return new IncrementExpression(ctx, 'post', this.visit(ctx.getChild(0)));
+    }
+
+    visitPreDecreaseExpression(ctx) {
+        return new DecrementExpression(ctx, 'pre', this.visit(ctx.getChild(1)));
+    };
+
+    visitPostDecreaseExpression(ctx) {
+        return new DecrementExpression(ctx, 'post', this.visit(ctx.getChild(0)));
     }
 
 
