@@ -1,0 +1,6 @@
+ProgramNode (1:0, 1:11)
+    IfStatementNode (1:0, 1:11)
+    --> test expression:
+        LiteralNode (1:4, 1:4) : { value: true }
+    --> consequent:
+        BlockStatementNode (1:10, 1:11)

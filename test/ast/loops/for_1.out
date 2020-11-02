@@ -1,0 +1,23 @@
+ProgramNode (1:0, 1:42)
+    ForStatementNode (1:0, 1:42)
+    --> test expressions:
+        AssignmentExpressionNode (1:5, 1:9) { operator: = }
+        --> left operand:
+            IdentifierNode (1:5, 1:5) : { name: i }
+        --> right operand:
+            IdentifierNode (1:5, 1:5) : { name: i }
+        BinaryExpressionNode (1:12, 1:20) { operator: < }
+        --> left operand:
+            IdentifierNode (1:12, 1:12) : { name: i }
+        --> right operand:
+            MemberExpressionNode (1:16, 1:20) { computed: false }
+            --> object:
+                IdentifierNode (1:16, 1:16) : { name: qwe }
+            --> property:
+                IdentifierNode (1:20, 1:20) : { name: length }
+        IncrementExpression (1:28, 1:29) { type: post }
+        --> identifier:
+            IdentifierNode (1:28, 1:28) : { name: i }
+    --> loop body:
+        BlockStatementNode (1:33, 1:42)
+            BreakStatementNode (1:35, 1:40)

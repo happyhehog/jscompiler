@@ -1,0 +1,8 @@
+ProgramNode (1:0, 1:21)
+    WhileStatementNode (1:0, 1:20)
+    --> test expression:
+        LiteralNode (1:7, 1:7) : { value: true }
+    --> loop body:
+        CallExpressionNode (1:13, 1:20)
+        --> callable:
+            IdentifierNode (1:13, 1:13) : { name: doSmth }

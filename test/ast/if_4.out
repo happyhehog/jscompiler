@@ -1,0 +1,8 @@
+ProgramNode (1:0, 1:17)
+    IfStatementNode (1:0, 1:16)
+    --> test expression:
+        IdentifierNode (1:4, 1:4) : { name: a }
+    --> consequent:
+        CallExpressionNode (1:7, 1:16)
+        --> callable:
+            IdentifierNode (1:7, 1:7) : { name: thenFunc }

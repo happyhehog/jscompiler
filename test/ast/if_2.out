@@ -1,0 +1,18 @@
+ProgramNode (1:0, 5:0)
+    IfStatementNode (1:0, 5:0)
+    --> test expression:
+        BinaryExpressionNode (1:4, 1:10) { operator: === }
+        --> left operand:
+            IdentifierNode (1:4, 1:4) : { name: a }
+        --> right operand:
+            LiteralNode (1:10, 1:10) : { value: 3 }
+    --> consequent:
+        BlockStatementNode (1:13, 3:0)
+            CallExpressionNode (2:4, 2:10)
+            --> callable:
+                IdentifierNode (2:4, 2:4) : { name: hello }
+    --> alternate:
+        BlockStatementNode (3:7, 5:0)
+            CallExpressionNode (4:4, 4:10)
+            --> callable:
+                IdentifierNode (4:4, 4:4) : { name: world }

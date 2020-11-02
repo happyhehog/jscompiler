@@ -1,0 +1,7 @@
+ProgramNode (1:0, 3:0)
+    WhileStatementNode (1:0, 3:0)
+    --> test expression:
+        LiteralNode (1:7, 1:7) : { value: true }
+    --> loop body:
+        BlockStatementNode (1:13, 3:0)
+            ContinueStatementNode (2:4, 2:12)

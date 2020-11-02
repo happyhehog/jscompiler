@@ -326,7 +326,7 @@ class BinaryExpressionNode extends ExpressionNode {
     }
 
     print(deepLevel = 0, suffix = '') {
-        let resultStr = super.print(deepLevel, ` { operator: ${this.operator} } `);
+        let resultStr = super.print(deepLevel, ` { operator: ${this.operator} }`);
         resultStr += ' '.repeat(deepLevel * 4) + '--> left operand:\n' + this.leftOperand.print(deepLevel + 1);
         resultStr += ' '.repeat(deepLevel * 4) + '--> right operand:\n' + this.rightOperand.print(deepLevel + 1);
         return resultStr;
@@ -341,7 +341,7 @@ class UnaryExpressionNode extends ExpressionNode {
     }
 
     print(deepLevel = 0, suffix = '') {
-        let resultStr = super.print(deepLevel, ` { operator: ${this.operator} } `);
+        let resultStr = super.print(deepLevel, ` { operator: ${this.operator} }`);
         resultStr += ' '.repeat(deepLevel * 4) + '--> operand:\n' + this.operand.print(deepLevel + 1);
         return resultStr;
     }

@@ -1,0 +1,9 @@
+ProgramNode (1:0, 6:0)
+    BlockStatementNode (1:0, 6:0)
+        CallExpressionNode (2:4, 2:11)
+        --> callable:
+            IdentifierNode (2:4, 2:4) : { name: doSmth }
+        BlockStatementNode (3:4, 5:4)
+            CallExpressionNode (4:8, 4:15)
+            --> callable:
+                IdentifierNode (4:8, 4:8) : { name: doSmth }

@@ -1,0 +1,35 @@
+ProgramNode (1:0, 3:0)
+    IfStatementNode (1:0, 3:0)
+    --> test expression:
+        LogicalExpressionNode (1:4, 1:34) { operator: && }
+        --> left operand:
+            BinaryExpressionNode (1:4, 1:10) { operator: === }
+            --> left operand:
+                IdentifierNode (1:4, 1:4) : { name: a }
+            --> right operand:
+                LiteralNode (1:10, 1:10) : { value: 3 }
+        --> right operand:
+            LogicalExpressionNode (1:16, 1:31) { operator: || }
+            --> left operand:
+                BinaryExpressionNode (1:16, 1:22) { operator: === }
+                --> left operand:
+                    IdentifierNode (1:16, 1:16) : { name: a }
+                --> right operand:
+                    LiteralNode (1:22, 1:22) : { value: 2 }
+            --> right operand:
+                BinaryExpressionNode (1:27, 1:31) { operator: > }
+                --> left operand:
+                    IdentifierNode (1:27, 1:27) : { name: a }
+                --> right operand:
+                    LiteralNode (1:31, 1:31) : { value: 100 }
+    --> consequent:
+        BlockStatementNode (1:37, 3:0)
+            CallExpressionNode (2:4, 2:23)
+            --> callable:
+                MemberExpressionNode (2:4, 2:12) { computed: false }
+                --> object:
+                    IdentifierNode (2:4, 2:4) : { name: console }
+                --> property:
+                    IdentifierNode (2:12, 2:12) : { name: log }
+            --> arguments:
+                LiteralNode (2:16, 2:16) : { value: 'hello' }

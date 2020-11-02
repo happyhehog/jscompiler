@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "node --no-warnings ./src/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:ast": "mocha --no-warnings test/test_ast",
     "eslint": "node_modules/.bin/eslint src/**/*.js",
     "eslint:fix": "yarn eslint --fix"
   },

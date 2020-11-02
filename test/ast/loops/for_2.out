@@ -1,0 +1,14 @@
+ProgramNode (1:0, 3:0)
+    ForStatementNode (1:0, 3:0)
+    --> test expressions:
+        AssignmentExpressionNode (1:5, 1:9) { operator: = }
+        --> left operand:
+            IdentifierNode (1:5, 1:5) : { name: i }
+        --> right operand:
+            IdentifierNode (1:5, 1:5) : { name: i }
+        IncrementExpression (1:14, 1:15) { type: post }
+        --> identifier:
+            IdentifierNode (1:14, 1:14) : { name: i }
+    --> loop body:
+        BlockStatementNode (1:19, 3:0)
+            BreakStatementNode (2:4, 2:9)

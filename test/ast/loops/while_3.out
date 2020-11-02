@@ -1,0 +1,20 @@
+ProgramNode (1:0, 4:0)
+    VariableDeclarationListNode (1:4, 1:8)
+    --> declarations:
+        VariableDeclarationNode (1:4, 1:8)
+        --> identifier:
+            IdentifierNode (1:4, 1:8) : { name: i }
+        --> initValue:
+            LiteralNode (1:8, 1:8) : { value: 1 }
+    WhileStatementNode (2:0, 4:0)
+    --> test expression:
+        BinaryExpressionNode (2:7, 2:11) { operator: < }
+        --> left operand:
+            IdentifierNode (2:7, 2:7) : { name: i }
+        --> right operand:
+            LiteralNode (2:11, 2:11) : { value: 10 }
+    --> loop body:
+        BlockStatementNode (2:15, 4:0)
+            IncrementExpression (3:4, 3:5) { type: post }
+            --> identifier:
+                IdentifierNode (3:4, 3:4) : { name: i }
