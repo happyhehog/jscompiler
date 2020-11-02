@@ -1,5 +1,4 @@
 const ECMAScriptVisitor = require('../../lib/ECMAScriptVisitor').ECMAScriptVisitor;
-const {BinaryOperator, UnaryOperator, OtherOperators} = require('./Operators');
 const {
     // Base nodes
     ProgramNode,
@@ -161,9 +160,15 @@ class AstVisitor extends ECMAScriptVisitor {
 
     visitArrayLiteral(ctx) {
         const node = new ArrayExpressionNode(ctx);
+        console.log(ctx.elementList());
         if (ctx.elementList()) {
             ctx.elementList().children.forEach((item) => {
-                node.elements.push(this.visit(item));
+                const elementNode = this.visit(item);
+                if (typeof elementNode === 'undefined') {
+                    return;
+                }
+
+                node.elements.push(elementNode);
             });
         }
 
@@ -304,98 +309,62 @@ class AstVisitor extends ECMAScriptVisitor {
     // ==========================
 
     visitRelationalExpression(ctx) {
-        const RelationOperatorMapper = {
-            '<': BinaryOperator.LESS,
-            '<=': BinaryOperator.LESS_OR_EQUAL,
-            '>': BinaryOperator.GREATER,
-            '>=': BinaryOperator.GREATER_OR_EQUAL,
-        };
-
-        const operator = RelationOperatorMapper[ctx.children[1].getText()] ?? null;
-        return new BinaryExpressionNode(ctx, operator,
+        return new BinaryExpressionNode(ctx, ctx.children[1].getText() ?? '',
             this.visit(ctx.singleExpression(0)),
             this.visit(ctx.singleExpression(1))
         );
     }
 
     visitAssignmentExpression(ctx) {
-        return new AssignmentExpressionNode(ctx, OtherOperators.ASSIGN,
+        return new AssignmentExpressionNode(ctx, '=',
             this.visit(ctx.singleExpression(0)),
             this.visit(ctx.singleExpression(1))
         );
     }
 
     visitEqualityExpression(ctx) {
-        const OP_MAPPER = {
-            '===': BinaryOperator.EQUAL,
-            '!==': BinaryOperator.UNEQUAL,
-        };
-
-        const operator = OP_MAPPER[ctx.children[1].getText()] ?? null;
-        return new BinaryExpressionNode(ctx, operator,
+        return new BinaryExpressionNode(ctx, ctx.children[1].getText() ?? '',
             this.visit(ctx.singleExpression(0)),
             this.visit(ctx.singleExpression(1)));
     }
 
     visitMultiplicativeExpression(ctx) {
-        const OP_MAPPER = {
-            '/': BinaryOperator.DIVISION,
-            '*': BinaryOperator.MULTIPLICATION,
-            '%': BinaryOperator.REMAINDER
-        };
-
-        const operator = OP_MAPPER[ctx.children[1].getText()] ?? null;
-
-        return new BinaryExpressionNode(ctx, operator,
+        return new BinaryExpressionNode(ctx, ctx.children[1].getText() ?? '',
             this.visit(ctx.singleExpression(0)),
             this.visit(ctx.singleExpression(1))
         );
     }
 
     visitAdditiveExpression(ctx) {
-        const OP_MAPPER = {
-            '+': BinaryOperator.ADDITION,
-            '-': BinaryOperator.SUBTRACTION
-        };
-
-        const operator = OP_MAPPER[ctx.children[1].getText()] ?? null;
-
-        return new BinaryExpressionNode(ctx, operator,
+        return new BinaryExpressionNode(ctx, ctx.children[1].getText() ?? '',
             this.visit(ctx.singleExpression(0)),
             this.visit(ctx.singleExpression(1))
         );
     }
 
     visitBitShiftExpression(ctx) {
-        const OP_MAPPER = {
-            '<<': BinaryOperator.LEFT_SHIFT,
-            '>>': BinaryOperator.RIGHT_SHIFT,
-            '>>>': BinaryOperator.ARITHMETIC_RIGHT_SHIFT,
-        };
-
-        const operator = OP_MAPPER[ctx.children[1].getText()] ?? null;
-        return new BinaryExpressionNode(ctx, operator,
+        return new BinaryExpressionNode(ctx, ctx.children[1].getText() ?? '',
             this.visit(ctx.singleExpression(0)),
             this.visit(ctx.singleExpression(1))
         );
     }
 
     visitLogicalAndExpression(ctx) {
-        return new LogicalExpressionNode(ctx, OtherOperators.LOGICAL_AND,
+        return new LogicalExpressionNode(ctx, '&&',
             this.visit(ctx.singleExpression(0)),
             this.visit(ctx.singleExpression(1))
         );
     }
 
     visitLogicalOrExpression(ctx) {
-        return new LogicalExpressionNode(ctx, OtherOperators.LOGICAL_OR,
+        return new LogicalExpressionNode(ctx, '||',
             this.visit(ctx.singleExpression(0)),
             this.visit(ctx.singleExpression(1))
         );
     }
 
     visitBitXOrExpression(ctx) {
-        return new BinaryExpressionNode(ctx, BinaryOperator.BIT_XOR,
+        return new BinaryExpressionNode(ctx, '^',
             this.visit(ctx.singleExpression(0)),
             this.visit(ctx.singleExpression(1))
         );
@@ -407,34 +376,34 @@ class AstVisitor extends ECMAScriptVisitor {
     // ==========================
 
     visitUnaryMinusExpression(ctx) {
-        return new UnaryExpressionNode(ctx, UnaryOperator.MINUS, this.visit(ctx.singleExpression()));
+        return new UnaryExpressionNode(ctx, '-', this.visit(ctx.singleExpression()));
     }
 
     visitUnaryPlusExpression(ctx) {
-        return new UnaryExpressionNode(ctx, UnaryOperator.PLUS, this.visit(ctx.singleExpression()));
+        return new UnaryExpressionNode(ctx, '+', this.visit(ctx.singleExpression()));
     }
 
     visitDeleteExpression(ctx) {
-        return new UnaryExpressionNode(ctx, UnaryOperator.DELETE, this.visit(ctx.singleExpression()));
+        return new UnaryExpressionNode(ctx, 'delete', this.visit(ctx.singleExpression()));
     }
 
     visitBitNotExpression(ctx) {
-        return new UnaryExpressionNode(ctx, UnaryOperator.BIT_NOT, this.visit(ctx.singleExpression()));
+        return new UnaryExpressionNode(ctx, '~', this.visit(ctx.singleExpression()));
     }
 
     visitNotExpression(ctx) {
-        return new UnaryExpressionNode(ctx, UnaryOperator.LOGIC_NOT , this.visit(ctx.singleExpression()));
+        return new UnaryExpressionNode(ctx, '!' , this.visit(ctx.singleExpression()));
     }
 
     visitBitAndExpression(ctx) {
-        return new BinaryExpressionNode(ctx, BinaryOperator.BIT_AND,
+        return new BinaryExpressionNode(ctx, '&',
             this.visit(ctx.singleExpression(0)),
             this.visit(ctx.singleExpression(1))
         );
     }
 
     visitBitOrExpression(ctx) {
-        return new BinaryExpressionNode(ctx, BinaryOperator.BIT_OR,
+        return new BinaryExpressionNode(ctx, '|',
             this.visit(ctx.singleExpression(0)),
             this.visit(ctx.singleExpression(1))
         );
@@ -490,6 +459,18 @@ class AstVisitor extends ECMAScriptVisitor {
         );
     }
 
+
+    // ==========================
+    // Other
+    // ==========================
+
+    visitStatement(ctx) {
+        return this.visit(ctx.children[0]);
+    };
+
+    visitSourceElement(ctx) {
+        return this.visit(ctx.children[0]);
+    };
 }
 
 module.exports.AstVisitor = AstVisitor;
