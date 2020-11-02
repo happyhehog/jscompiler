@@ -1,0 +1,8 @@
+ProgramNode (1:0, 1:9)
+    VariableDeclarationListNode (1:4, 1:8)
+    --> declarations:
+        VariableDeclarationNode (1:4, 1:8)
+        --> identifier:
+            IdentifierNode (1:4, 1:8) : { name: a }
+        --> initValue:
+            LiteralNode (1:8, 1:8) : { value: 1 }

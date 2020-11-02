@@ -5,7 +5,7 @@ ProgramNode (1:0, 1:42)
         --> left operand:
             IdentifierNode (1:5, 1:5) : { name: i }
         --> right operand:
-            IdentifierNode (1:5, 1:5) : { name: i }
+            LiteralNode (1:9, 1:9) : { value: 0 }
         BinaryExpressionNode (1:12, 1:20) { operator: < }
         --> left operand:
             IdentifierNode (1:12, 1:12) : { name: i }

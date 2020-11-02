@@ -1,0 +1,16 @@
+ProgramNode (1:0, 1:23)
+    VariableDeclarationListNode (1:4, 1:23)
+    --> declarations:
+        VariableDeclarationNode (1:4, 1:23)
+        --> identifier:
+            IdentifierNode (1:4, 1:23) : { name: x }
+        --> initValue:
+            ArrayExpressionNode (1:8, 1:23)
+            --> elements:
+                LiteralNode (1:10, 1:10) : { value: 1 }
+                LiteralNode (1:13, 1:13) : { value: 2 }
+                BinaryExpressionNode (1:16, 1:20) { operator: + }
+                --> left operand:
+                    LiteralNode (1:16, 1:16) : { value: 3 }
+                --> right operand:
+                    LiteralNode (1:20, 1:20) : { value: 2 }

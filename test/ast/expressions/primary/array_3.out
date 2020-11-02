@@ -1,0 +1,10 @@
+ProgramNode (1:0, 1:14)
+    VariableDeclarationListNode (1:4, 1:14)
+    --> declarations:
+        VariableDeclarationNode (1:4, 1:14)
+        --> identifier:
+            IdentifierNode (1:4, 1:14) : { name: x }
+        --> initValue:
+            ArrayExpressionNode (1:8, 1:14)
+            --> elements:
+                LiteralNode (1:10, 1:10) : { value: 42 }
