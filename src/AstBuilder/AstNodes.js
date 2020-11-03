@@ -245,17 +245,23 @@ class IfStatementNode extends StatementNode {
     }
 }
 
-class LoopStatementNode extends StatementNode {
-    constructor(ctx, expr, body) {
+class BaseLoopStatementNode extends StatementNode {
+    constructor(ctx, expr, body, varExpr) {
         super(ctx);
         this.expr = expr;
         this.body = body;
+        this.varExpr = varExpr;
     }
 
     print(deepLevel = 0, suffix = '') {
         let resultStr = super.print(deepLevel);
         if (Array.isArray(this.expr)) {
             resultStr += ' '.repeat(deepLevel * 4) + '--> test expressions:\n';
+
+            if (typeof this.varExpr !== 'undefined') {
+                resultStr += this.varExpr.print(deepLevel + 1);
+            }
+
             this.expr.forEach((item) => {
                 resultStr += item.print(deepLevel + 1);
             });
@@ -268,10 +274,18 @@ class LoopStatementNode extends StatementNode {
     }
 }
 
-class WhileStatementNode extends LoopStatementNode {
+class WhileStatementNode extends BaseLoopStatementNode {
 }
 
-class ForStatementNode extends LoopStatementNode {
+class DoWhileStatementNode extends WhileStatementNode {
+    
+}
+
+class ForStatementNode extends BaseLoopStatementNode {
+}
+
+class ForVarStatementNode extends BaseLoopStatementNode {
+
 }
 
 class ReturnStatementNode extends StatementNode {
@@ -507,7 +521,9 @@ module.exports = {
     ContinueStatementNode,
     IfStatementNode,
     WhileStatementNode,
+    DoWhileStatementNode,
     ForStatementNode,
+    ForVarStatementNode,
     ReturnStatementNode,
 
     // Variables

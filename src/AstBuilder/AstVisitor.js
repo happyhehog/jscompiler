@@ -22,7 +22,9 @@ const {
     ContinueStatementNode,
     IfStatementNode,
     WhileStatementNode,
+    DoWhileStatementNode,
     ForStatementNode,
+    ForVarStatementNode,
     ReturnStatementNode,
 
     // Variables
@@ -224,10 +226,25 @@ class AstVisitor extends ECMAScriptVisitor {
         );
     }
 
+    visitDoStatement(ctx) {
+        return new DoWhileStatementNode(ctx,
+            this.visit(ctx.expressionSequence()),
+            this.visit(ctx.statement())
+        );
+    }
+
     visitForStatement(ctx) {
         return new ForStatementNode(ctx,
             this.visit(ctx.expressionSequence()),
             this.visit(ctx.statement())
+        );
+    }
+
+    visitForVarStatement(ctx) {
+        return new ForVarStatementNode(ctx,
+            this.visit(ctx.expressionSequence()),
+            this.visit(ctx.statement()),
+            this.visit(ctx.variableDeclarationList())
         );
     }
 

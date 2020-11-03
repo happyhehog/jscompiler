@@ -1,0 +1,21 @@
+ProgramNode (1:0, 3:0)
+    ForVarStatementNode (1:0, 3:0)
+    --> test expressions:
+        VariableDeclarationListNode (1:9, 1:13)
+        --> declarations:
+            VariableDeclarationNode (1:9, 1:13)
+            --> identifier:
+                IdentifierNode (1:9, 1:13) : { name: i }
+            --> initValue:
+                LiteralNode (1:13, 1:13) : { value: 0 }
+        BinaryExpressionNode (1:16, 1:20) { operator: < }
+        --> left operand:
+            IdentifierNode (1:16, 1:16) : { name: i }
+        --> right operand:
+            LiteralNode (1:20, 1:20) : { value: 10 }
+        IncrementExpression (1:24, 1:25) { type: post }
+        --> identifier:
+            IdentifierNode (1:24, 1:24) : { name: i }
+    --> loop body:
+        BlockStatementNode (1:29, 3:0)
+            BreakStatementNode (2:4, 2:9)
