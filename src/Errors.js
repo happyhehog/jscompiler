@@ -10,7 +10,15 @@ class FileNotExistsError extends Error {
     }
 }
 
+class ParsingError extends Error {
+    constructor() {
+        super("Parser finished with error");
+    }
+
+}
+
 module.exports = {
     NoSourceFileError: NoSourceFileError,
     FileNotExistsError: FileNotExistsError,
+    ParsingError: ParsingError,
 };
