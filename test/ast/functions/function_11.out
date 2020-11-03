@@ -1,0 +1,11 @@
+ProgramNode (1:0, 1:33)
+    VariableDeclarationListNode (1:4, 1:32)
+    --> declarations:
+        VariableDeclarationNode (1:4, 1:32)
+        --> identifier:
+            IdentifierNode (1:4, 1:32) : { name: hi }
+        --> initValue:
+            FunctionExpressionNode (1:9, 1:32)
+            --> name:
+                IdentifierNode (1:9, 1:32) : { name: arguments }
+            --> body: empty

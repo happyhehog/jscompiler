@@ -1,0 +1,8 @@
+ProgramNode (1:0, 1:22)
+    FunctionDeclarationNode (1:0, 1:22)
+    --> name:
+        IdentifierNode (1:0, 1:22) : { name: test }
+    --> parameters:
+        IdentifierNode (1:0, 1:22) : { name: t }
+        IdentifierNode (1:0, 1:22) : { name: t }
+    --> body: empty

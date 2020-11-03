@@ -144,7 +144,11 @@ class FunctionDeclarationNode extends DeclarationNode {
     }
 
     print(deepLevel = 0, suffix = '') {
-        let resultStr = super.print(deepLevel, ` : { name: ${this.id} }`);
+        let resultStr = super.print(deepLevel);
+
+        if (this.id !== null) {
+            resultStr += ' '.repeat(deepLevel * 4) + '--> name:\n' + this.id.print(deepLevel + 1);
+        }
 
         if (this.params.length) {
             resultStr += ' '.repeat(deepLevel * 4) + '--> parameters:\n';
@@ -153,10 +157,7 @@ class FunctionDeclarationNode extends DeclarationNode {
             });
         }
 
-        resultStr += ' '.repeat(deepLevel * 4) + '--> body:\n';
-        this.body.forEach((item) => {
-            resultStr += item.print(deepLevel + 1);
-        });
+        resultStr += ' '.repeat(deepLevel * 4) + `--> body:${!this.body.body.length ? ' empty\n' : '\n'}` + this.body.print(deepLevel + 1);
         return resultStr;
     }
 }
@@ -186,7 +187,7 @@ class FunctionExpressionNode extends ExpressionNode {
             });
         }
 
-        resultStr += ' '.repeat(deepLevel * 4) + '--> body:\n' + this.body.print(deepLevel + 1);
+        resultStr += ' '.repeat(deepLevel * 4) + `--> body:${!this.body.body.length ? ' empty\n' : '\n'}` + this.body.print(deepLevel + 1);
         return resultStr;
     }
 }

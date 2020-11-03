@@ -1,0 +1,42 @@
+ProgramNode (1:0, 1:46)
+    LogicalExpressionNode (1:0, 1:46) { operator: || }
+    --> left operand:
+        IdentifierNode (1:0, 1:0) : { name: a }
+    --> right operand:
+        LogicalExpressionNode (1:5, 1:46) { operator: && }
+        --> left operand:
+            IdentifierNode (1:5, 1:5) : { name: b }
+        --> right operand:
+            BinaryExpressionNode (1:10, 1:46) { operator: | }
+            --> left operand:
+                IdentifierNode (1:10, 1:10) : { name: c }
+            --> right operand:
+                BinaryExpressionNode (1:14, 1:46) { operator: ^ }
+                --> left operand:
+                    IdentifierNode (1:14, 1:14) : { name: d }
+                --> right operand:
+                    BinaryExpressionNode (1:18, 1:46) { operator: & }
+                    --> left operand:
+                        IdentifierNode (1:18, 1:18) : { name: e }
+                    --> right operand:
+                        BinaryExpressionNode (1:22, 1:46) { operator: === }
+                        --> left operand:
+                            IdentifierNode (1:22, 1:22) : { name: f }
+                        --> right operand:
+                            BinaryExpressionNode (1:28, 1:46) { operator: < }
+                            --> left operand:
+                                IdentifierNode (1:28, 1:28) : { name: g }
+                            --> right operand:
+                                BinaryExpressionNode (1:32, 1:46) { operator: >>> }
+                                --> left operand:
+                                    IdentifierNode (1:32, 1:32) : { name: h }
+                                --> right operand:
+                                    BinaryExpressionNode (1:38, 1:46) { operator: + }
+                                    --> left operand:
+                                        IdentifierNode (1:38, 1:38) : { name: i }
+                                    --> right operand:
+                                        BinaryExpressionNode (1:42, 1:46) { operator: * }
+                                        --> left operand:
+                                            IdentifierNode (1:42, 1:42) : { name: j }
+                                        --> right operand:
+                                            IdentifierNode (1:46, 1:46) : { name: k }

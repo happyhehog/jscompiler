@@ -1,0 +1,18 @@
+ProgramNode (1:0, 1:44)
+    CallExpressionNode (1:0, 1:44)
+    --> callable:
+        MemberExpressionNode (1:0, 1:21) { computed: false }
+        --> object:
+            MemberExpressionNode (1:0, 1:11) { computed: false }
+            --> object:
+                MemberExpressionNode (1:0, 1:6) { computed: false }
+                --> object:
+                    IdentifierNode (1:0, 1:0) : { name: earth }
+                --> property:
+                    IdentifierNode (1:6, 1:6) : { name: asia }
+            --> property:
+                IdentifierNode (1:11, 1:11) : { name: Indonesia }
+        --> property:
+            IdentifierNode (1:21, 1:21) : { name: prepareForElection }
+    --> arguments:
+        LiteralNode (1:40, 1:40) : { value: 2014 }

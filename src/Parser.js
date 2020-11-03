@@ -1,6 +1,6 @@
 const antlr4 = require('antlr4');
-const ECMAScriptLexer = require('../lib/ECMAScriptLexer.js');
-const ECMAScriptParser = require('../lib/ECMAScriptParser.js');
+const JavaScriptLexer = require('../lib/ECMAScriptLexer');
+const JavaScriptParser = require('../lib/ECMAScriptParser');
 const {FileNotExistsError} = require("./Errors");
 const fs = require('fs');
 const AstVisitor = require('./AstBuilder/AstVisitor').AstVisitor;
@@ -16,13 +16,22 @@ class Parser {
 
     parse() {
         const chars = new antlr4.InputStream(this.input);
-        const lexer = new ECMAScriptLexer.ECMAScriptLexer(chars);
+        const lexer = new JavaScriptLexer.ECMAScriptLexer(chars);
         lexer.strictMode = false;
 
         const tokens = new antlr4.CommonTokenStream(lexer);
-        const parser = new ECMAScriptParser.ECMAScriptParser(tokens);
+        const parser = new JavaScriptParser.ECMAScriptParser(tokens);
         const tree = parser.program();
+        this.stringTree = tree.toStringTree(parser.ruleNames);
+        return tree;
+    }
+
+    getAst(tree) {
         return new AstVisitor().visit(tree);
+    }
+
+    getStringTree(tree) {
+        return this.stringTree;
     }
 }
 

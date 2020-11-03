@@ -1,0 +1,10 @@
+ProgramNode (1:0, 1:29)
+    FunctionDeclarationNode (1:0, 1:29)
+    --> name:
+        IdentifierNode (1:0, 1:29) : { name: hello }
+    --> parameters:
+        IdentifierNode (1:0, 1:29) : { name: a }
+    --> body:
+        CallExpressionNode (1:20, 1:26)
+        --> callable:
+            IdentifierNode (1:20, 1:20) : { name: sayHi }

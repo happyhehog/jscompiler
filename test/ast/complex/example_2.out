@@ -1,0 +1,58 @@
+ProgramNode (1:0, 8:0)
+    FunctionDeclarationNode (1:0, 3:0)
+    --> name:
+        IdentifierNode (1:0, 3:0) : { name: sum }
+    --> parameters:
+        IdentifierNode (1:0, 3:0) : { name: a }
+        IdentifierNode (1:0, 3:0) : { name: b }
+        IdentifierNode (1:0, 3:0) : { name: c }
+    --> body:
+        ReturnStatementNode (2:4, 2:29)
+        --> value:
+            BinaryExpressionNode (2:11, 2:28) { operator: * }
+            --> left operand:
+                CallExpressionNode (2:11, 2:24)
+                --> callable:
+                    IdentifierNode (2:11, 2:11) : { name: sum }
+                --> arguments:
+                    IdentifierNode (2:15, 2:15) : { name: a }
+                    IdentifierNode (2:18, 2:18) : { name: b }
+                    LiteralNode (2:21, 2:21) : { value: 100 }
+            --> right operand:
+                IdentifierNode (2:28, 2:28) : { name: c }
+    ForStatementNode (5:0, 8:0)
+    --> test expressions:
+        AssignmentExpressionNode (5:5, 5:9) { operator: = }
+        --> left operand:
+            IdentifierNode (5:5, 5:5) : { name: i }
+        --> right operand:
+            LiteralNode (5:9, 5:9) : { value: 1 }
+        BinaryExpressionNode (5:12, 5:16) { operator: < }
+        --> left operand:
+            IdentifierNode (5:12, 5:12) : { name: i }
+        --> right operand:
+            LiteralNode (5:16, 5:16) : { value: 10 }
+        IncrementExpression (5:20, 5:21) { type: post }
+        --> identifier:
+            IdentifierNode (5:20, 5:20) : { name: i }
+    --> loop body:
+        BlockStatementNode (5:25, 8:0)
+            IfStatementNode (6:4, 6:22)
+            --> test expression:
+                BinaryExpressionNode (6:8, 6:14) { operator: === }
+                --> left operand:
+                    IdentifierNode (6:8, 6:8) : { name: i }
+                --> right operand:
+                    LiteralNode (6:14, 6:14) : { value: 5 }
+            --> consequent:
+                BreakStatementNode (6:17, 6:22)
+            CallExpressionNode (7:4, 7:17)
+            --> callable:
+                MemberExpressionNode (7:4, 7:12) { computed: false }
+                --> object:
+                    IdentifierNode (7:4, 7:4) : { name: console }
+                --> property:
+                    IdentifierNode (7:12, 7:12) : { name: log }
+            --> arguments:
+                IdentifierNode (7:16, 7:16) : { name: i }
+

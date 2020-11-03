@@ -279,7 +279,7 @@ class AstVisitor extends ECMAScriptVisitor {
 
         if (ctx.formalParameterList()) {
             ctx.formalParameterList().Identifier().forEach((parameter) => {
-                node.parameters.push(new IdentifierNode(parameter, parameter.symbol.text));
+                node.params.push(new IdentifierNode(ctx, parameter.symbol.text));
             });
         }
 
@@ -304,7 +304,7 @@ class AstVisitor extends ECMAScriptVisitor {
 
         if (ctx.formalParameterList()) {
             ctx.formalParameterList().Identifier().forEach((param) => {
-                node.params.push(new IdentifierNode(param, param.symbol.text));
+                node.params.push(new IdentifierNode(ctx, param.symbol.text));
             });
         }
 
@@ -394,6 +394,27 @@ class AstVisitor extends ECMAScriptVisitor {
         );
     }
 
+    visitBitAndExpression(ctx) {
+        return new BinaryExpressionNode(ctx, '&',
+            this.visit(ctx.singleExpression(0)),
+            this.visit(ctx.singleExpression(1))
+        );
+    }
+
+    visitBitOrExpression(ctx) {
+        return new BinaryExpressionNode(ctx, '|',
+            this.visit(ctx.singleExpression(0)),
+            this.visit(ctx.singleExpression(1))
+        );
+    }
+
+    visitInstanceofExpression(ctx) {
+        return new BinaryExpressionNode(ctx, 'instanceof',
+            this.visit(ctx.singleExpression(0)),
+            this.visit(ctx.singleExpression(1))
+        );
+    };
+
 
     // ==========================
     // Unary Expressions
@@ -417,20 +438,6 @@ class AstVisitor extends ECMAScriptVisitor {
 
     visitNotExpression(ctx) {
         return new UnaryExpressionNode(ctx, '!' , this.visit(ctx.singleExpression()));
-    }
-
-    visitBitAndExpression(ctx) {
-        return new BinaryExpressionNode(ctx, '&',
-            this.visit(ctx.singleExpression(0)),
-            this.visit(ctx.singleExpression(1))
-        );
-    }
-
-    visitBitOrExpression(ctx) {
-        return new BinaryExpressionNode(ctx, '|',
-            this.visit(ctx.singleExpression(0)),
-            this.visit(ctx.singleExpression(1))
-        );
     }
 
 

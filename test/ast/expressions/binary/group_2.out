@@ -1,0 +1,10 @@
+ProgramNode (1:0, 1:14)
+    BinaryExpressionNode (1:0, 1:14) { operator: + }
+    --> left operand:
+        BinaryExpressionNode (1:0, 1:10) { operator: + }
+        --> left operand:
+            LiteralNode (1:1, 1:1) : { value: 1 }
+        --> right operand:
+            LiteralNode (1:7, 1:7) : { value: 2 }
+    --> right operand:
+        LiteralNode (1:14, 1:14) : { value: 3 }

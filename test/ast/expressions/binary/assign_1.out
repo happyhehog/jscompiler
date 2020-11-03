@@ -1,0 +1,6 @@
+ProgramNode (1:0, 1:4)
+    AssignmentExpressionNode (1:0, 1:4) { operator: = }
+    --> left operand:
+        IdentifierNode (1:0, 1:0) : { name: x }
+    --> right operand:
+        LiteralNode (1:4, 1:4) : { value: 42 }

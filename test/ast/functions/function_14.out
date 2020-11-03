@@ -1,0 +1,10 @@
+ProgramNode (1:0, 1:29)
+    FunctionDeclarationNode (1:0, 1:29)
+    --> name:
+        IdentifierNode (1:0, 1:29) : { name: test }
+    --> body:
+        BinaryExpressionNode (1:18, 1:25) { operator: + }
+        --> left operand:
+            LiteralNode (1:18, 1:18) : { value: "42" }
+        --> right operand:
+            LiteralNode (1:25, 1:25) : { value: 42 }

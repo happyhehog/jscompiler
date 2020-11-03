@@ -1,0 +1,6 @@
+ProgramNode (1:0, 1:9)
+    MemberExpressionNode (1:0, 1:9) { computed: false }
+    --> object:
+        IdentifierNode (1:0, 1:0) : { name: universe }
+    --> property:
+        IdentifierNode (1:9, 1:9) : { name: milkyway }

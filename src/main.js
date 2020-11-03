@@ -8,11 +8,11 @@ function parseFile(filePath) {
     console.log('Found source file: ' + filePath);
     console.log(DELIMITER);
 
-    const astTree = new Parser(filePath).parse();
+    const parser = new Parser(filePath);
     console.log('-------------------------');
     console.log('/// Generated AstTree ///');
     console.log('-------------------------');
-    console.log(astTree.print());
+    console.log(parser.getAst(parser.parse()).print());
 }
 
 if (process.argv.length === 2) {

@@ -1,0 +1,10 @@
+ProgramNode (1:0, 1:13)
+    MemberExpressionNode (1:0, 1:13) { computed: false }
+    --> object:
+        CallExpressionNode (1:0, 1:11)
+        --> callable:
+            IdentifierNode (1:0, 1:0) : { name: universe }
+        --> arguments:
+            LiteralNode (1:9, 1:9) : { value: 42 }
+    --> property:
+        IdentifierNode (1:13, 1:13) : { name: galaxies }

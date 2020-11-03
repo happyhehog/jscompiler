@@ -39,7 +39,11 @@ for (const key in testsList) {
         for (const file in files) {
             const filename = files[file].split('/').pop();
             it(filename, function (done) {
-                const result = new Parser(files[file]).parse().print().trim();
+                const parser = new Parser(files[file]);
+                const tree = parser.parse();
+                const result = key.startsWith('parser') ?
+                    parser.getStringTree(tree) :
+                    parser.getAst(tree).print().trim();
                 const expected = fs.readFileSync(files[file].replace('.in', '.out')).toString().replaceAll('\r\n', '\n').trim();
                 done(result === expected ? null : new Error('Result != expected'));
             });

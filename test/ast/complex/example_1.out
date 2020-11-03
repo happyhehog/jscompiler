@@ -1,0 +1,96 @@
+ProgramNode (1:0, 19:23)
+    VariableDeclarationListNode (1:4, 1:11)
+    --> declarations:
+        VariableDeclarationNode (1:4, 1:4)
+        --> identifier:
+            IdentifierNode (1:4, 1:4) : { name: a }
+        VariableDeclarationNode (1:7, 1:11)
+        --> identifier:
+            IdentifierNode (1:7, 1:11) : { name: b }
+        --> initValue:
+            LiteralNode (1:11, 1:11) : { value: 3 }
+    AssignmentExpressionNode (2:0, 2:4) { operator: = }
+    --> left operand:
+        IdentifierNode (2:0, 2:0) : { name: a }
+    --> right operand:
+        IdentifierNode (2:4, 2:4) : { name: b }
+    WhileStatementNode (4:0, 8:0)
+    --> test expression:
+        BinaryExpressionNode (4:7, 4:13) { operator: === }
+        --> left operand:
+            IdentifierNode (4:7, 4:7) : { name: a }
+        --> right operand:
+            IdentifierNode (4:13, 4:13) : { name: b }
+    --> loop body:
+        BlockStatementNode (4:16, 8:0)
+            IncrementExpression (5:4, 5:5) { type: post }
+            --> identifier:
+                IdentifierNode (5:4, 5:4) : { name: a }
+            IncrementExpression (6:4, 6:6) { type: pre }
+            --> identifier:
+                IdentifierNode (6:6, 6:6) : { name: b }
+            BreakStatementNode (7:4, 7:9)
+    FunctionDeclarationNode (10:0, 12:0)
+    --> name:
+        IdentifierNode (10:0, 12:0) : { name: sum }
+    --> parameters:
+        IdentifierNode (10:0, 12:0) : { name: a }
+        IdentifierNode (10:0, 12:0) : { name: b }
+    --> body:
+        ReturnStatementNode (11:4, 11:16)
+        --> value:
+            BinaryExpressionNode (11:11, 11:15) { operator: + }
+            --> left operand:
+                IdentifierNode (11:11, 11:11) : { name: a }
+            --> right operand:
+                IdentifierNode (11:15, 11:15) : { name: b }
+    VariableDeclarationListNode (14:4, 16:0)
+    --> declarations:
+        VariableDeclarationNode (14:4, 16:0)
+        --> identifier:
+            IdentifierNode (14:4, 16:0) : { name: sum2 }
+        --> initValue:
+            FunctionExpressionNode (14:11, 16:0)
+            --> parameters:
+                IdentifierNode (14:11, 16:0) : { name: a }
+                IdentifierNode (14:11, 16:0) : { name: b }
+            --> body:
+                ReturnStatementNode (15:4, 15:22)
+                --> value:
+                    BinaryExpressionNode (15:11, 15:21) { operator: * }
+                    --> left operand:
+                        LiteralNode (15:11, 15:11) : { value: 2 }
+                    --> right operand:
+                        BinaryExpressionNode (15:16, 15:20) { operator: + }
+                        --> left operand:
+                            IdentifierNode (15:16, 15:16) : { name: a }
+                        --> right operand:
+                            IdentifierNode (15:20, 15:20) : { name: b }
+    CallExpressionNode (18:0, 18:21)
+    --> callable:
+        MemberExpressionNode (18:0, 18:8) { computed: false }
+        --> object:
+            IdentifierNode (18:0, 18:0) : { name: console }
+        --> property:
+            IdentifierNode (18:8, 18:8) : { name: log }
+    --> arguments:
+        CallExpressionNode (18:12, 18:20)
+        --> callable:
+            IdentifierNode (18:12, 18:12) : { name: sum }
+        --> arguments:
+            IdentifierNode (18:16, 18:16) : { name: a }
+            IdentifierNode (18:19, 18:19) : { name: b }
+    CallExpressionNode (19:0, 19:22)
+    --> callable:
+        MemberExpressionNode (19:0, 19:8) { computed: false }
+        --> object:
+            IdentifierNode (19:0, 19:0) : { name: console }
+        --> property:
+            IdentifierNode (19:8, 19:8) : { name: log }
+    --> arguments:
+        CallExpressionNode (19:12, 19:21)
+        --> callable:
+            IdentifierNode (19:12, 19:12) : { name: sum2 }
+        --> arguments:
+            IdentifierNode (19:17, 19:17) : { name: a }
+            IdentifierNode (19:20, 19:20) : { name: b }

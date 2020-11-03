@@ -1,0 +1,18 @@
+ProgramNode (1:0, 1:20)
+    BinaryExpressionNode (1:0, 1:20) { operator: + }
+    --> left operand:
+        BinaryExpressionNode (1:0, 1:16) { operator: + }
+        --> left operand:
+            IdentifierNode (1:0, 1:0) : { name: a }
+        --> right operand:
+            BinaryExpressionNode (1:5, 1:15) { operator: < }
+            --> left operand:
+                IdentifierNode (1:5, 1:5) : { name: b }
+            --> right operand:
+                BinaryExpressionNode (1:10, 1:14) { operator: * }
+                --> left operand:
+                    IdentifierNode (1:10, 1:10) : { name: c }
+                --> right operand:
+                    IdentifierNode (1:14, 1:14) : { name: d }
+    --> right operand:
+        IdentifierNode (1:20, 1:20) : { name: e }

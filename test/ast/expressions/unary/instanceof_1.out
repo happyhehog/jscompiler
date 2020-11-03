@@ -1,0 +1,6 @@
+ProgramNode (1:0, 1:13)
+    BinaryExpressionNode (1:0, 1:13) { operator: instanceof }
+    --> left operand:
+        IdentifierNode (1:0, 1:0) : { name: a }
+    --> right operand:
+        IdentifierNode (1:13, 1:13) : { name: MyClass }

@@ -1,0 +1,8 @@
+ProgramNode (1:0, 1:24)
+    FunctionExpressionNode (1:1, 1:23)
+    --> name:
+        IdentifierNode (1:1, 1:23) : { name: test }
+    --> parameters:
+        IdentifierNode (1:1, 1:23) : { name: t }
+        IdentifierNode (1:1, 1:23) : { name: t }
+    --> body: empty

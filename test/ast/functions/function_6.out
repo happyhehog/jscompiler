@@ -1,0 +1,9 @@
+ProgramNode (1:0, 1:39)
+    FunctionDeclarationNode (1:0, 1:39)
+    --> name:
+        IdentifierNode (1:0, 1:39) : { name: eval }
+    --> body:
+        FunctionDeclarationNode (1:18, 1:37)
+        --> name:
+            IdentifierNode (1:18, 1:37) : { name: inner }
+        --> body: empty

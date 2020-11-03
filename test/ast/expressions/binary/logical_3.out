@@ -1,0 +1,10 @@
+ProgramNode (1:0, 1:10)
+    LogicalExpressionNode (1:0, 1:10) { operator: || }
+    --> left operand:
+        LogicalExpressionNode (1:0, 1:5) { operator: || }
+        --> left operand:
+            IdentifierNode (1:0, 1:0) : { name: x }
+        --> right operand:
+            IdentifierNode (1:5, 1:5) : { name: y }
+    --> right operand:
+        IdentifierNode (1:10, 1:10) : { name: z }

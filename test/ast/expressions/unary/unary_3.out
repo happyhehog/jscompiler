@@ -1,0 +1,4 @@
+ProgramNode (1:0, 1:7)
+    UnaryExpressionNode (1:0, 1:7) { operator: delete }
+    --> operand:
+        IdentifierNode (1:7, 1:7) : { name: x }

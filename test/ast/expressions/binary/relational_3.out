@@ -1,0 +1,6 @@
+ProgramNode (1:0, 1:5)
+    BinaryExpressionNode (1:0, 1:5) { operator: <= }
+    --> left operand:
+        IdentifierNode (1:0, 1:0) : { name: x }
+    --> right operand:
+        IdentifierNode (1:5, 1:5) : { name: y }

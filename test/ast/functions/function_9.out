@@ -1,0 +1,12 @@
+ProgramNode (1:0, 1:31)
+    VariableDeclarationListNode (1:4, 1:30)
+    --> declarations:
+        VariableDeclarationNode (1:4, 1:30)
+        --> identifier:
+            IdentifierNode (1:4, 1:30) : { name: hi }
+        --> initValue:
+            FunctionExpressionNode (1:9, 1:30)
+            --> body:
+                CallExpressionNode (1:22, 1:28)
+                --> callable:
+                    IdentifierNode (1:22, 1:22) : { name: sayHi }
